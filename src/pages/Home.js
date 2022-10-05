@@ -1,15 +1,29 @@
-import React from "react";
-import { useState } from "react";
+//components
 import BookList from "../components/BookList";
 import BookForm from "../components/BookForm";
 
+import useCollection from "../hooks/useCollection";
+
 const Home = () => {
-  const [books, setBooks] = useState([
-    { title: "kitap 1", id: 1 },
-    { title: "kitap 2", id: 2 },
-    { title: "kitap 3", id: 3 },
-    { title: "kitap 4", id: 4 },
-  ]);
+  const { documents: books } = useCollection("books");
+
+  // const [books, setBooks] = useState(null);
+
+  // useEffect(() => {
+  //   const ref = collection(db, "books");
+
+  //   getDocs(ref).then((snap) => {
+  //     let result = [];
+  //     snap.forEach((doc) => {
+  //       // console.log(doc.data());
+  //       result.push({ id: doc.id, ...doc.data() });
+  //     });
+  //     console.log(result);
+
+  //     setBooks(result);
+  //   });
+  // }, []);
+
   return (
     <div className="App">
       {books && <BookList books={books} />}

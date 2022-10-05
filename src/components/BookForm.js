@@ -2,12 +2,21 @@ import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 
+import { db } from "../firebase/config";
+import { collection, addDoc } from "firebase/firestore";
+
 const BookForm = () => {
   const [newBook, setNewBook] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(newBook);
+    // console.log(newBook);
+    //Belge ekleme işlemi
+
+    const ref = collection(db, "books");
+    await addDoc(ref, {
+      title: newBook,
+    });
 
     setNewBook("");
   };
