@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
+import useLogin from "../hooks/useLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { error, login } = useLogin();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    // console.log(email, password);
+    login(email, password);
   };
   return (
     <div className="App">

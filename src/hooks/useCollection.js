@@ -4,11 +4,11 @@ import { collection, onSnapshot } from "firebase/firestore";
 
 //Gerçek zamanlı Erişim
 
-const useCollection = (col) => {
+const useCollection = (c) => {
   const [documents, setDocuments] = useState(null);
 
   useEffect(() => {
-    let ref = collection(db, col);
+    let ref = collection(db, c);
 
     const unsub = onSnapshot(
       ref,

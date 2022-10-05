@@ -2,13 +2,18 @@ import { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 
+import useSignup from "../hooks/useSignup";
+
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { error, signup } = useSignup();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    // console.log(email, password)
+    signup(email, password);
   };
   return (
     <div className="App">
@@ -33,6 +38,7 @@ const Signup = () => {
           />
         </label>
         <Button label="Üye Ol" className="p-button-rounded p-button-info" />
+        {error && <p>{error}</p>}
       </form>
     </div>
   );
